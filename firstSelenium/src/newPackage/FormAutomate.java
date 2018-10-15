@@ -1,7 +1,7 @@
 package newPackage;
 
 import java.util.List;
-
+import org.openqa.selenium.JavascriptExecutor; 
 import org.apache.http.util.Asserts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -57,11 +57,15 @@ public class FormAutomate {
         Asserts.check(true, "Selenium Commands drop down header is present", formAutomate.selCommands);
         //Will fill form and click on submit
         formAutomate.firstNameTxt.sendKeys("Namratha");
+        ((JavascriptExecutor)FirstBasic.driver).executeScript("arguments[0].scrollIntoView();", formAutomate.lastNameTxt);
         formAutomate.lastNameTxt.sendKeys("Pallai");
-        formAutomate.genderRadio.get(1);
-        formAutomate.yrsOfExpRadio.get(3);
+        formAutomate.genderRadio.get(1).click();
+        formAutomate.yrsOfExpRadio.get(3).click();
         formAutomate.dateTxt.sendKeys("12-10-2018");
-        formAutomate.professionCheckbx.get(0);
+        System.out.println("HEY am in");
+        formAutomate.professionCheckbx.get(0).click();
+        // how to handle dropdown is pending in this form.
+        formAutomate.submitBtn.click();
         
 		FirstBasic.closeDriver();
 	}
