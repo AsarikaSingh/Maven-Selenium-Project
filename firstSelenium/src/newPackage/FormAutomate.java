@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.apache.http.util.Asserts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class FormAutomate {
 	
@@ -33,8 +34,8 @@ public class FormAutomate {
 		List<WebElement> professionCheckbx = root.findElements(By.cssSelector("input[name='profession'][type='checkbox']"));
 		WebElement profilePicInput = root.findElement(By.cssSelector("input[name='photo']"));
 		List<WebElement> automationToolCheckbx = root.findElements(By.cssSelector("input[name='tool']"));
-		List<WebElement> continentsDropDown = root.findElements(By.cssSelector("select[id='continents']"));
-		List<WebElement> selCommandsDropDown = root.findElements(By.cssSelector("select[id='selenium_commands']"));
+		Select continentsDropDown = new Select(root.findElement(By.cssSelector("select[id='continents']")));
+		Select selCommandsDropDown = new Select(root.findElement(By.cssSelector("select[id='selenium_commands']")));
 		
 		WebElement submitBtn = root.findElement(By.cssSelector("button[id='submit']"));
 		
@@ -64,7 +65,9 @@ public class FormAutomate {
         formAutomate.dateTxt.sendKeys("12-10-2018");
         System.out.println("HEY am in");
         formAutomate.professionCheckbx.get(0).click();
-        // how to handle dropdown is pending in this form.
+        // how to handle dropdown is pending in this form. import Select package and use as below
+        formAutomate.continentsDropDown.selectByVisibleText("Australia");
+        formAutomate.selCommandsDropDown.selectByIndex(4);
         formAutomate.submitBtn.click();
         
 		FirstBasic.closeDriver();
